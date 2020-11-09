@@ -2,6 +2,7 @@
 @using Models
 @using Assignment1.Data
 @inject IAdultsService AdultsService
+@inject NavigationManager NavigationManager
 
 <h3>Adults</h3>
 
@@ -53,11 +54,11 @@ else
                 <td>@item.Sex</td>
                 <td>@item.JobTitle</td>
                 <AuthorizeView Policy="MustBeAdmin">
-                   <td>
-                       <button @onclick="@(() => RemoveAdult(item.Id))">
-                           <i class="oi oi-trash"/>
-                       </button>
-                   </td>
+                    <td>
+                        <button @onclick="@(() => RemoveAdult(item.Id))">
+                            <i class="oi oi-trash"/>
+                        </button>
+                    </td>
                 </AuthorizeView>
                 
             </tr>
@@ -71,13 +72,13 @@ else
     
     protected override async Task OnInitializedAsync()
     {
-        adults = AdultsService.GetAdults();
+        adults = await AdultsService.GetAdultsAsync();
     }
     
     private void RemoveAdult(int Id)
     {
         Adult adultToRemove = adults.First(a => a.Id == Id);
-        AdultsService.RemoveAdult(Id);
+        AdultsService.RemoveAdultAsync(Id);
         adults.Remove(adultToRemove);
     }
 }

@@ -62,7 +62,7 @@
 
     private void AddNewAdult()
     {
-        AdultsService.AddAdult(newAdultItem);
+        AdultsService.AddAdultAsync(newAdultItem);
         NavigationManager.NavigateTo("/AdultList");
     }
 
@@ -76,7 +76,6 @@
         if (!user.Identity.IsAuthenticated)
         {
             NavigationManager.NavigateTo($"/Login");
-    // NavigationManager.NavigateTo($"/Login?returnUrl={Uri.EscapeDataString(NavigationManager.Uri)}");  
         }
     }
 

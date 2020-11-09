@@ -75,7 +75,7 @@ else
     
     protected override async Task OnInitializedAsync()
     {
-        allAdults = AdultsService.GetAdults();
+        allAdults = await AdultsService.GetAdultsAsync();
         adultsToShow = null; 
     }
     
